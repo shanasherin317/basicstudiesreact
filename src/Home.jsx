@@ -1,12 +1,26 @@
 import { useState } from "react";
 function Home(props){
 
-    const[count,setCount]=useState(43);
+    const increment=()=>props.increment()
+    const decrement=()=>props.decrement()
+    const reset=()=>props.reset()
+    // const changeColor=()=>props.changeColor()
+    const input=(e)=>{
+    props.input(e. target.value)
+    }
     return(
-        <>
-        <h1>{props.data}</h1>
-        <h1>{props.fun(count)}</h1>
-        <h1>{props.shi}</h1>
+      <>
+      <div className="divs" style={{background: props.bgColor}}>
+      <button onClick={increment}>+</button>
+      <h1>{props.state}</h1>
+      {props.state===0 ?
+      <button disabled onClick={decrement}>-</button> :
+      <button onClick={decrement}>-</button>
+      }
+      <button onClick={reset}>reset</button>
+      {/* <button onClick={changeColor}>Change Color</button> */}
+      <input onChange={input} type="text" />
+      </div>
         </>
     )
 } 

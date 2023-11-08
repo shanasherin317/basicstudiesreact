@@ -5,16 +5,19 @@ import './App.css'
 import Home from './Home'
 
 function App() {
+  const[state,setState]=useState(0);
+  const [bgColor, setBgColor] = useState(' ');
   
-  const[state,setState]=useState(68);
- const myfun=(e)=>{
-  console.log('function calling');
-  setState(e);
- }
+ const increment=()=>setState(state+1);
+ const decrement=()=>state===0 ? " ": setState(state-1);
+ const reset=()=>setState(0);
+//  const changeColor=()=>setBgColor('yellow')
+ const input=(e)=>setBgColor(e)
+  
 
   return (
     <>
-    <Home data={'data'} fun={myfun} shi={state}/>
+    <Home input={input} increment={increment} decrement={decrement} state={state} reset={reset} bgColor={bgColor}/>
     </>
   )
 }
