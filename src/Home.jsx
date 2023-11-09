@@ -1,19 +1,27 @@
-import { useState } from "react";
-function Home(props){
+import { useState,useContext } from "react";
+import { AppContext } from "./App";
 
-    const increment=()=>props.increment()
-    const decrement=()=>props.decrement()
-    const reset=()=>props.reset()
-    // const changeColor=()=>props.changeColor()
+function Home(){
+
+  const value=useContext(AppContext)
+
+
+    console.log(value,'value');
+
+
+    const increment=()=>value.increment()
+    const decrement=()=>value.decrement()
+    const reset=()=>value.reset()
+    // const changeColor=()=>value.changeColor()
     const input=(e)=>{
-    props.input(e. target.value)
+    value.input(e. target.value)
     }
     return(
-      <>
-      <div className="divs" style={{background: props.bgColor}}>
+      <div style={{background:value.bgColor,width:'100%',height:'100vh'}}>
+      <div className="divs" style={{background: value.bgColor}}>
       <button onClick={increment}>+</button>
-      <h1>{props.state}</h1>
-      {props.state===0 ?
+      <h1>{value.state}</h1>
+      {value.state===0 ?
       <button disabled onClick={decrement}>-</button> :
       <button onClick={decrement}>-</button>
       }
@@ -21,7 +29,7 @@ function Home(props){
       {/* <button onClick={changeColor}>Change Color</button> */}
       <input onChange={input} type="text" />
       </div>
-        </>
+        </div>
     )
 } 
 export default Home
